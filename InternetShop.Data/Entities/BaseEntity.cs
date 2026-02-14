@@ -1,7 +1,11 @@
-﻿namespace EfCoreExamples.ContextV1.Entities
+﻿namespace InternetShop.Data.Entities
 {
     public abstract record BaseEntity
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public DateTime UpdatedAt { get; set; }
     }
 }

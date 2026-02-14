@@ -1,4 +1,4 @@
-﻿//namespace EfCoreExamples.ContextV1.Entities
+﻿//namespace InternetShop.Data.Entities
 //{
 //    public record ProductCategory : BaseEntity
 //    {

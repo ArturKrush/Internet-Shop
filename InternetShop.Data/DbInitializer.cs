@@ -1,7 +1,7 @@
-﻿using EfCoreExamples.ContextV1.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using InternetShop.Data.Entities;
 
-namespace EfCoreExamples.ContextV1
+namespace InternetShop.Data
 {
 	public class DbInitializer
 	{

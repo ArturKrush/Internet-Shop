@@ -1,11 +1,11 @@
-﻿using EfCoreExamples.ContextV1.Entities;
+﻿using InternetShop.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace EfCoreExamples.ContextV1
+namespace InternetShop.Data
 {
-	public class FirstInternetShopDbContext : DbContext
+	public class InternetShopDbContext : DbContext
 	{
-		public FirstInternetShopDbContext(DbContextOptions<FirstInternetShopDbContext> options) : base(options) { }
+		public InternetShopDbContext(DbContextOptions<InternetShopDbContext> options) : base(options) { }
 
 		public DbSet<Product> Products { get; set; }
 		public DbSet<Customer> Customers { get; set; }
@@ -16,7 +16,7 @@ namespace EfCoreExamples.ContextV1
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
-			modelBuilder.ApplyConfigurationsFromAssembly(typeof(FirstInternetShopDbContext).Assembly);
+			modelBuilder.ApplyConfigurationsFromAssembly(typeof(InternetShopDbContext).Assembly);
 			new DbInitializer(modelBuilder).Seed();
 		}
 	}

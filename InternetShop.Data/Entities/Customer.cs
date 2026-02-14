@@ -1,13 +1,13 @@
-﻿namespace EfCoreExamples.ContextV1.Entities
+﻿namespace InternetShop.Data.Entities
 {
     public record Customer : BaseEntity
     {
-        public string FirstName { get; set; } = string.Empty;
+        public string? FirstName { get; set; }
 
-        public string LastName { get; set; } = string.Empty;
+        public string? LastName { get; set; }
 
         public DateTime BirthDate { get; set; }
 
-        public virtual IEnumerable<OrderLine> Orders { get; set; } = [];
+        public virtual IEnumerable<Order> Orders { get; set; } = [];
     }
 }

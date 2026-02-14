@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using EfCoreExamples.ContextV1.Entities;
+using InternetShop.Data.Entities;
 
-namespace EfCoreExamples.ContextV1.EntityConfigurations
+namespace InternetShop.Data.EntityConfigurations
 {
 	public class OrderLineConfiguration : IEntityTypeConfiguration<OrderLine>
 	{

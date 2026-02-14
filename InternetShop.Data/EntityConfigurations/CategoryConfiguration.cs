@@ -1,8 +1,8 @@
-﻿using EfCoreExamples.ContextV1.Entities;
+﻿using InternetShop.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace EfCoreExamples.ContextV1.EntityConfigurations
+namespace InternetShop.Data.EntityConfigurations
 {
 	public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 	{
