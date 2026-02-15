@@ -3,7 +3,6 @@ using CorrelationId.DependencyInjection;
 using InternetShop.Api.Middleware;
 using InternetShop.Api.Modules;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,6 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddCore(builder.Configuration);
 builder.Services.UseCoreLogging();
 builder.Services.AddDefaultCorrelationId();
+
+builder.Services.AddHttpLogging(options => { });
 
 var app = builder.Build();
 

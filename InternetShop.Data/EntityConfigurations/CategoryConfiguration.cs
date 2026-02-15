@@ -10,8 +10,8 @@ namespace InternetShop.Data.EntityConfigurations
 		{
 			builder.HasKey(x => x.Id);
 			builder.Property(x => x.Id).ValueGeneratedOnAdd();
-			builder.Property(x => x.Name).IsRequired().HasColumnType("NVARCHAR(250)").HasMaxLength(20);
-			builder.Property(x => x.Description).IsRequired().HasColumnType("NVARCHAR(250)").HasMaxLength(100);
+			builder.Property(x => x.Name).IsRequired().HasColumnType("NVARCHAR(50)").HasMaxLength(50);
+			builder.Property(x => x.Description).IsRequired().HasColumnType("NVARCHAR(250)").HasMaxLength(250);
 
 			builder.HasMany(x => x.Products)
 				.WithMany(y => y.Categories);

@@ -10,18 +10,18 @@ namespace InternetShop.Data.EntityConfigurations
 		{
 			builder.HasKey(x => x.Id);
 			builder.Property(x => x.Id).ValueGeneratedOnAdd();
-			builder.Property(x => x.ProductId).IsRequired();
-			builder.Property(x => x.CustomerId).IsRequired();
+            builder.Property(x => x.TotalPrice).IsRequired().HasColumnType("DECIMAL(18, 2)");
+            builder.Property(x => x.Quantity).IsRequired().HasColumnType("INT");
 
-			builder.HasOne(d => d.Product)
-				.WithMany(p => p.Orders)
+            builder.HasOne(d => d.Product)
+				.WithMany(p => p.OrderLines)
 				.HasForeignKey(d => d.ProductId)
-				.OnDelete(DeleteBehavior.ClientSetNull);
+				.OnDelete(DeleteBehavior.NoAction);
 
-			builder.HasOne(d => d.Customer)
-				.WithMany(p => p.Orders)
-				.HasForeignKey(d => d.CustomerId)
-				.OnDelete(DeleteBehavior.ClientSetNull);
+			builder.HasOne(d => d.Order)
+				.WithMany(p => p.OrderLines)
+				.HasForeignKey(d => d.OrderId)
+				.OnDelete(DeleteBehavior.NoAction);
 		}
 	}
 }

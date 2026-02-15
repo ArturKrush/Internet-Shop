@@ -10,9 +10,9 @@ namespace InternetShop.Data.EntityConfigurations
 		{
 			builder.HasKey(x => x.Id);
 			builder.Property(x => x.Id).ValueGeneratedOnAdd();
-			builder.Property(x => x.Name).IsRequired().HasColumnType("NVARCHAR(250)").HasMaxLength(20);
-			builder.Property(x => x.Description).IsRequired().HasColumnType("NVARCHAR(250)").HasMaxLength(100);
-			builder.Property(x => x.FoundedDate).IsRequired().HasColumnType("DATETIME");
+			builder.Property(x => x.Name).IsRequired().HasColumnType("NVARCHAR(60)").HasMaxLength(60);
+			builder.Property(x => x.Description).IsRequired().HasColumnType("NVARCHAR(250)").HasMaxLength(250);
+			builder.Property(x => x.FoundedDate).IsRequired().HasColumnType("DATETIME2");
 
 			builder.HasMany(x => x.Products)
 				.WithOne(y => y.Manufacturer);

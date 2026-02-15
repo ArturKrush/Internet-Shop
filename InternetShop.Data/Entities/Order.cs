@@ -1,11 +1,13 @@
 ﻿namespace InternetShop.Data.Entities
 {
-    public record Order : BaseEntity
+    public class Order : BaseEntity
     {
-        public int CustomerId { get; set; }
+        public long CustomerId { get; set; }
+
+        public decimal TotalPrice { get; set; }
 
         public virtual Customer? Customer { get; set; }
 
-        public virtual IEnumerable<OrderLine> OrderLines { get; set; } = [];
+        public virtual ICollection<OrderLine> OrderLines { get; set; } = [];
     }
 }

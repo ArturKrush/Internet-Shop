@@ -11,20 +11,6 @@ namespace InternetShop.Api.Modules
     {
         public static IServiceCollection AddCore(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Scan(scan => scan
-               .FromAssembliesOf(typeof(IRequestHandler<>))
-               .AddClasses(classes => classes.AssignableTo(typeof(IRequestHandler<,>)))
-                   .AsImplementedInterfaces()
-                   .WithTransientLifetime()
-               .AddClasses(classes => classes.AssignableTo(typeof(IRequestHandler<>)))
-                   .AsImplementedInterfaces()
-                   .WithTransientLifetime());
-
-            services.AddDbContext<InternetShopDbContext>(options =>
-            {
-                options.UseSqlServer(configuration.GetConnectionString("InternetShop"));
-            });
-
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
             services.AddApiVersioning(t =>
@@ -34,6 +20,20 @@ namespace InternetShop.Api.Modules
             });
 
             services.AddSwaggerGen();
+
+            services.Scan(scan => scan
+                .FromAssembliesOf(typeof(IRequestHandler<>))
+                .AddClasses(classes => classes.AssignableTo(typeof(IRequestHandler<,>)))
+                    .AsImplementedInterfaces()
+                    .WithTransientLifetime()
+                .AddClasses(classes => classes.AssignableTo(typeof(IRequestHandler<>)))
+                    .AsImplementedInterfaces()
+                    .WithTransientLifetime());
+
+            services.AddDbContext<InternetShopDbContext>(options =>
+            {
+                options.UseSqlServer(configuration.GetConnectionString("InternetShop"));
+            });
 
             return services;
         }
