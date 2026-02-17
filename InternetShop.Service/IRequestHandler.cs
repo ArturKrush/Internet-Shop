@@ -1,4 +1,4 @@
-﻿namespace MovieManager.Service
+﻿namespace InternetShop.Service
 {
     public interface IRequestHandler<in TRequest, TResponse>
     {

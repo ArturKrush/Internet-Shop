@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using EfCoreExamples.ContextV1.Entities;
+using InternetShop.Data.Entities;
 
-namespace EfCoreExamples.ContextV1.EntityConfigurations
+namespace InternetShop.Data.EntityConfigurations
 {
 	public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
 	{
@@ -10,9 +10,9 @@ namespace EfCoreExamples.ContextV1.EntityConfigurations
 		{
 			builder.HasKey(x => x.Id);
 			builder.Property(x => x.Id).ValueGeneratedOnAdd();
-			builder.Property(x => x.FirstName).IsRequired().HasColumnType("NVARCHAR(250)").HasMaxLength(20);
-			builder.Property(x => x.LastName).IsRequired().HasColumnType("NVARCHAR(250)").HasMaxLength(20);
-			builder.Property(x => x.BirthDate).IsRequired().HasColumnType("DATETIME");
+			builder.Property(x => x.FirstName).IsRequired().HasColumnType("NVARCHAR(60)").HasMaxLength(60);
+			builder.Property(x => x.LastName).IsRequired().HasColumnType("NVARCHAR(60)").HasMaxLength(60);
+			builder.Property(x => x.BirthDate).IsRequired().HasColumnType("DATETIME2");
 
 			builder.HasMany(x => x.Orders)
 				.WithOne(y => y.Customer);

@@ -1,11 +1,37 @@
-﻿namespace EfCoreExamples.ContextV1.Entities
+﻿using System.Text.RegularExpressions;
+using InternetShop.Data.Constants;
+
+namespace InternetShop.Data.Entities
 {
-    public record Category : BaseEntity
+    public class Category : BaseEntity
     {
-        public string Name { get; set; } = string.Empty;
+        private string? _name;
 
-        public string Description { get; set; } = string.Empty;
+        public string? Name
+        {
+            get => _name;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Category name can not be empty.");
+                }
 
-        public virtual IEnumerable<Product> Products { get; set; } = [];
+                // Видалення зайвих пробілів
+                string cleanValue = value.Trim();
+
+                // Перевірка, що рядок починається з англійської літери
+                if (!Regex.IsMatch(cleanValue, AppConstants.ObjectsNamePattern))
+                {
+                    throw new ArgumentException("Category name must starts with an English letter.");
+                }
+
+                _name = cleanValue;
+            }
+        }
+
+        public string? Description { get; set; }
+
+        public virtual ICollection<Product> Products { get; set; } = [];
     }
 }

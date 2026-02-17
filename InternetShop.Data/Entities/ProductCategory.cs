@@ -1,13 +1,13 @@
-﻿//namespace EfCoreExamples.ContextV1.Entities
-//{
-//    public record ProductCategory : BaseEntity
-//    {
-//        public int ProductId { get; set; }
+﻿namespace InternetShop.Data.Entities
+{
+    public class ProductCategory
+    {
+        public long ProductId { get; set; }
 
-//        public int CategoryId { get; set; }
+        public long CategoryId { get; set; }
 
-//        public virtual Product? Product { get; set; }
+        public virtual Product? Product { get; set; }
 
-//        public virtual Category? Category { get; set; }
-//    }
-//}
+        public virtual Category? Category { get; set; }
+    }
+}

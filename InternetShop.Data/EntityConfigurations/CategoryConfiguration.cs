@@ -1,8 +1,8 @@
-﻿using EfCoreExamples.ContextV1.Entities;
+﻿using InternetShop.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace EfCoreExamples.ContextV1.EntityConfigurations
+namespace InternetShop.Data.EntityConfigurations
 {
 	public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 	{
@@ -10,8 +10,8 @@ namespace EfCoreExamples.ContextV1.EntityConfigurations
 		{
 			builder.HasKey(x => x.Id);
 			builder.Property(x => x.Id).ValueGeneratedOnAdd();
-			builder.Property(x => x.Name).IsRequired().HasColumnType("NVARCHAR(250)").HasMaxLength(20);
-			builder.Property(x => x.Description).IsRequired().HasColumnType("NVARCHAR(250)").HasMaxLength(100);
+			builder.Property(x => x.Name).IsRequired().HasColumnType("NVARCHAR(50)").HasMaxLength(50);
+			builder.Property(x => x.Description).IsRequired().HasColumnType("NVARCHAR(250)").HasMaxLength(250);
 
 			builder.HasMany(x => x.Products)
 				.WithMany(y => y.Categories);
