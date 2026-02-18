@@ -45,21 +45,34 @@ namespace InternetShop.Api.Controllers
         }
 
         [HttpPatch("{categoryId}")]
-        public async Task<IActionResult> UpdateCategoryAsync(
+        public async Task<IActionResult> UpdateCategoryAsync(long categoryId,
             [FromServices] IRequestHandler<UpdateCategoryCommand, CategoryResponse> updateCategoryCommand,
             [FromBody] UpdateCategoryRequest request)
         {
-            if (!ModelState.IsValid)
-                return BadRequest("Undefined which category to update");
-
             var category = await updateCategoryCommand.Handle(new UpdateCategoryCommand
             {
-                CategoryId = request.CategoryId,
+                CategoryId = categoryId,
                 Name = request.Name,
                 Description = request.Description
             });
 
+            if (category == null)
+                return NotFound($"Category with ID {categoryId} not found.");
+
             return Ok(category);
+        }
+
+        [HttpDelete("{categoryId}")]
+        public async Task<IActionResult> DeleteCategoryByIdAsync(int categoryId, [FromServices] IRequestHandler<DeleteCategoryCommand, bool> deleteCategoryCommand)
+        {
+            var result = await deleteCategoryCommand.Handle(new DeleteCategoryCommand { CategoryId = categoryId });
+
+            if (result)
+            {
+                return NoContent();
+            }
+
+            return NotFound();
         }
     }
 }

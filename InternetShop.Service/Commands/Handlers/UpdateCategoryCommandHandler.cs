@@ -14,23 +14,25 @@ namespace InternetShop.Service.Commands.Handlers
             _context = context;
         }
 
-        public async Task<CategoryResponse> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken = default)
+        public async Task<CategoryResponse?> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken = default)
         {
             var category = await GetCategoryAsync(request.CategoryId, cancellationToken);
 
             if (category == null)
-                throw new Exception("Category to update is not exists");
+                return null;
 
-            if(request.Name != null)
+            //Якщо певне з полів прийшло порожнім, значить воно не оновлюється
+            if (request.Name != null)
+            {
                 category.Name = request.Name;
+            }
+
             if (request.Description != null)
+            {
                 category.Description = request.Description;
+            }
 
-            if(request.Name == null && request.Description == null)
-                throw new Exception("No fields to update");
-            //category.Name = category.Name != request.Name ? request.Name : category.Name;
-            //category.Description = category.Description != request.Description ? request.Description : category.Description;
-
+            // Якщо дійсно були зміни, то тільки тоді EntityFramework їх зберігає 
             await _context.SaveChangesAsync(cancellationToken);
 
             return new CategoryResponse
