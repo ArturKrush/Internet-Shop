@@ -63,7 +63,8 @@ namespace InternetShop.Api.Controllers
         }
 
         [HttpDelete("{categoryId}")]
-        public async Task<IActionResult> DeleteCategoryByIdAsync(int categoryId, [FromServices] IRequestHandler<DeleteCategoryCommand, bool> deleteCategoryCommand)
+        public async Task<IActionResult> DeleteCategoryByIdAsync(int categoryId,
+            [FromServices] IRequestHandler<DeleteCategoryCommand, bool> deleteCategoryCommand)
         {
             var result = await deleteCategoryCommand.Handle(new DeleteCategoryCommand { CategoryId = categoryId });
 

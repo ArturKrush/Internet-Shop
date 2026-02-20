@@ -30,6 +30,7 @@ namespace InternetShop.Service.Queries
                             Name = p.Name,
                             Description = p.Description,
                             Price = p.Price,
+                            ManufacturerId = p.ManufacturerId,
                             ManufacturerName = p.Manufacturer.Name
                         })
                         .ToList()

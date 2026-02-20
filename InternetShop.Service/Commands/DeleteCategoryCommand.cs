@@ -2,6 +2,6 @@
 {
     public class DeleteCategoryCommand
     {
-        public long CategoryId; 
+        public long CategoryId { get; set; } 
     }
 }
