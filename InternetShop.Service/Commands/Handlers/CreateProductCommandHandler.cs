@@ -53,7 +53,9 @@ namespace InternetShop.Service.Commands.Handlers
                         CategoryId = c.Id,
                         CategoryName = c.Name
                     }
-                    ).ToList()
+                    ).ToList(),
+                CreatedAt = product.CreatedAt,
+                UpdatedAt = product.UpdatedAt
             };
         }
     }

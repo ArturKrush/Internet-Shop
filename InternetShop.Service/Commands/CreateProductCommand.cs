@@ -1,5 +1,4 @@
-﻿using InternetShop.Contract.Responses;
-using InternetShop.Data.Entities;
+﻿using InternetShop.Data.Entities;
 
 namespace InternetShop.Service.Commands
 {

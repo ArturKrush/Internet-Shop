@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace InternetShop.Contract.Requests
+﻿namespace InternetShop.Contract.Requests
 {
     public class UpdateCategoryRequest
     {
