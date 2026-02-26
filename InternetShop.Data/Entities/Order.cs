@@ -1,8 +1,12 @@
-﻿namespace InternetShop.Data.Entities
+﻿using InternetShop.Contract.Enums;
+
+namespace InternetShop.Data.Entities
 {
     public class Order : BaseEntity
     {
         public long CustomerId { get; set; }
+
+        public OrderStatus Status { get; set; }
 
         public decimal TotalPrice { get; set; }
 

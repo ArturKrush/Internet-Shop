@@ -2,11 +2,16 @@ using CorrelationId;
 using CorrelationId.DependencyInjection;
 using InternetShop.Api.Middleware;
 using InternetShop.Api.Modules;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 builder.Services.AddCore(builder.Configuration);
 builder.Services.UseCoreLogging();
 builder.Services.AddDefaultCorrelationId();
