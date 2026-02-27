@@ -24,10 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Controllers\" />
-	</ItemGroup>
-
-	<ItemGroup>
+	  <ProjectReference Include="..\InternetShop.Contract\InternetShop.Contract.csproj" />
 	  <ProjectReference Include="..\InternetShop.Data\InternetShop.Data.csproj" />
 	  <ProjectReference Include="..\InternetShop.Service\InternetShop.Service.csproj" />
 	</ItemGroup>

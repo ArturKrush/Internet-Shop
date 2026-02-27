@@ -11,6 +11,7 @@ namespace InternetShop.Data.EntityConfigurations
 			builder.HasKey(x => x.Id);
 			builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.TotalPrice).IsRequired().HasColumnType("DECIMAL(18, 2)");
+			builder.Property(x => x.Status).HasColumnType("NVARCHAR(60)").HasConversion<string>();
 
             builder.HasOne(d => d.Customer)
 				.WithMany(p => p.Orders)
