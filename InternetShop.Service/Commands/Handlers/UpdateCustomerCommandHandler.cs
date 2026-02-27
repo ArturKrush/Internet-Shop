@@ -5,7 +5,7 @@ using InternetShop.Data.Entities;
 
 namespace InternetShop.Service.Commands.Handlers
 {
-    public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand, CustomerResponse>
+    public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand, CustomerResponse?>
     {
         private readonly InternetShopDbContext _context;
 

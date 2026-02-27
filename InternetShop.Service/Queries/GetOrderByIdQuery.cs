@@ -4,21 +4,28 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InternetShop.Service.Queries
 {
-    public class GetCustomerOrdersByIdQueryHandler : IRequestHandler<long, IList<OrderResponse>?>
+    public class GetOrderByIdQuery
+    {
+        public long OrderId { get; set; }
+
+        public long CustomerId { get; set; }
+    }
+
+    public class GetOrderByIdQueryHandler : IRequestHandler<GetOrderByIdQuery, OrderResponse?>
     {
         private readonly InternetShopDbContext _context;
 
-        public GetCustomerOrdersByIdQueryHandler(InternetShopDbContext context)
+        public GetOrderByIdQueryHandler(InternetShopDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IList<OrderResponse>?> Handle(long customerId, CancellationToken cancellationToken = default)
+        public async Task<OrderResponse?> Handle(GetOrderByIdQuery query, CancellationToken canToken = default)
         {
             return await _context.Orders
                 .AsNoTracking()
                 .AsSplitQuery()
-                .Where(x => x.CustomerId == customerId)
+                .Where(x => x.CustomerId == query.CustomerId && x.Id == query.OrderId)
                 .Select(x => new OrderResponse
                 {
                     OrderId = x.Id,
@@ -38,7 +45,7 @@ namespace InternetShop.Service.Queries
                     CreatedAt = x.CreatedAt,
                     UpdatedAt = x.UpdatedAt
                 })
-                .ToListAsync(cancellationToken);
+                .SingleOrDefaultAsync(canToken);
         }
     }
 }

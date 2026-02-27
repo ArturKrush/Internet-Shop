@@ -25,7 +25,7 @@ namespace InternetShop.Api.Controllers
             return Ok(await getCustomerByIdQuery.Handle(customerId));
         }
 
-        [HttpGet("{customerId}/orders", Name = "GetCustomerOrders")]
+        [HttpGet("{customerId}/Orders", Name = "GetCustomerOrders")]
         public async Task<IActionResult> GetCustomerOrdersByIdAsync(long customerId,
             [FromServices] IRequestHandler<long, IList<OrderResponse>> getCustomerOrdersByIdQuery)
         {

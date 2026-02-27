@@ -5,7 +5,7 @@ using InternetShop.Data.Entities;
 
 namespace InternetShop.Service.Commands.Handlers
 {
-    public class UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryCommand, CategoryResponse>
+    public class UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryCommand, CategoryResponse?>
     {
         private readonly InternetShopDbContext _context;
 
@@ -43,7 +43,7 @@ namespace InternetShop.Service.Commands.Handlers
             };
         }
 
-        private async Task<Category> GetCategoryAsync(long categoryId, CancellationToken cancellationToken = default)
+        private async Task<Category?> GetCategoryAsync(long categoryId, CancellationToken cancellationToken = default)
         {
             return await _context.Categories.SingleOrDefaultAsync(x => x.Id == categoryId, cancellationToken);
         }

@@ -53,7 +53,7 @@ namespace InternetShop.Api.Controllers
             [FromServices] IRequestHandler<UpdateProductCommand, ProductResponse> updateProductCommand,
             [FromBody] UpdateProductRequest request)
         {
-            var category = await updateProductCommand.Handle(new UpdateProductCommand
+            var product = await updateProductCommand.Handle(new UpdateProductCommand
             {
                 ProductId = productId,
                 Name = request.Name,
@@ -63,10 +63,10 @@ namespace InternetShop.Api.Controllers
                 CategoriesOfProduct = request.CategoriesOfProduct
             });
 
-            if (category == null)
+            if (product == null)
                 return NotFound($"Product with ID {productId} not found.");
 
-            return Ok(category);
+            return Ok(product);
         }
 
         [HttpDelete("{productId}")]
